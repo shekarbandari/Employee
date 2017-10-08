@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:jee="http://www.springframework.org/schema/jee"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:tx="http://www.springframework.org/schema/tx"	
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.2.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+
+<tx:annotation-driven />
+
+  <context:component-scan  	base-package="com.edistrict.medhassu.service.impl" />
+  <context:component-scan  	base-package="com.edistrict.medhassu.dao.impl" />
+  <context:component-scan 	base-package="com.edistrict.medhassu.bean" />
+   <context:component-scan  base-package="com.edistrict.medhassu.admin.dao.impl" />
+  
+  <bean id="generalServices" class="com.edistrict.medhassu.service.impl.GeneralServicesImpl"></bean>
+  <bean id="userServices" class="com.edistrict.medhassu.service.impl.UserServiceImpl"></bean>
+  <bean id="ddrServices" class="com.edistrict.medhassu.service.impl.DDRApplicationServiceImpl"></bean>
+  <bean id="dbrServices" class="com.edistrict.medhassu.service.impl.DBRApplicationServiceImpl"></bean>
+  <bean id="nokServices" class="com.edistrict.medhassu.service.impl.NOKApplicationServiceImpl"></bean>
+  <bean id="nclServices" class="com.edistrict.medhassu.service.impl.NCLAppServiceImpl"></bean>
+  <bean id="prcServices" class="com.edistrict.medhassu.service.impl.PRCApplicationServiceImpl"></bean>
+  <bean id="uploadDocService" class="com.edistrict.medhassu.service.impl.UploadDocServiceImpl"></bean>
+  <bean id="workflowProcessService" class="com.edistrict.medhassu.service.impl.WorkflowProcessServiceImpl"></bean> 
+  <!-- bean id="rawApplicationService" class="com.edistrict.medhassu.service.impl.RawApplicationServiceImpl"></bean-->   
+   <!--   <jee:jndi-lookup id="jdbc/jbpm-ds" jndi-name="java:/comp/env/jdbc/jbpm-ds"/> -->
+     <bean id="generalBean" class="com.edistrict.medhassu.bean.GeneralBean">   
+		<property name="host" value="smtp.gmail.com" />
+	  	<property name="port" value="587" />
+		<property name="username" value="MedhassuEDistrict@gmail.com" />
+		<property name="password" value="omsairam77" />
+		
+		<property name="smsSenderId" value="ASMGOV" />
+		<property name="smsUserName" value="ASSAMSSDG" />
+		<property name="smsPassword" value="Assam@ssdg1" />
+		<property name="smsMessage"
+			value="Your application is processed with final status:" />
+		<property name="smsURL"
+			value="http://msdgweb.mgov.gov.in/esms/sendsmsrequest" />
+   </bean>
+  
+<!-- Database Configuration -->
+<!--  <jee:jndi-lookup id="dataSource" jndi-name="/jdbc/edistrict-ds" />  -->	
+  	<import resource="../database/datasource.xml"/>       
+	<import resource="../database/hibernate.xml"/>
+	<!-- import resource="../database/hibernate_ForEDist.xml"/-->
+ 
+	
+ 
+</beans>
